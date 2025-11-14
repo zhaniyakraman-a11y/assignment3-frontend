@@ -27,7 +27,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone [<repository-url>](https://github.com/nurdsaga16/assignment3-frontend)
+git clone <repository-url>
 cd project-vue
 ```
 
