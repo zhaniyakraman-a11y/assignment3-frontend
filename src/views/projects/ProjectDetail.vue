@@ -130,8 +130,11 @@
           </div>
 
           <div class="project-actions">
-            <button v-if="isAuthenticated && isDonor" @click="handleDonate" class="donate-button">Помочь</button>
-            <div v-if="!isAuthenticated" class="auth-message">
+            <button v-if="isAuthenticated && isDonor && !isProjectFullyFunded" @click="handleDonate" class="donate-button">Помочь</button>
+            <div v-if="isProjectFullyFunded" class="fully-funded-message">
+              <p>🎉 Проект полностью профинансирован! Спасибо всем донорам!</p>
+            </div>
+            <div v-if="!isAuthenticated && !isProjectFullyFunded" class="auth-message">
               <p>Чтобы помочь проекту или создать свой, пожалуйста, <router-link to="/login" class="login-link">войдите</router-link> в систему</p>
             </div>
             <div v-if="canEditOrDelete" class="admin-actions">
@@ -236,6 +239,13 @@ const progressPercentage = computed(() => {
   return Math.min(Math.round(percentage), 100)
 })
 
+const isProjectFullyFunded = computed(() => {
+  if (!project.value?.targetAmount || project.value.targetAmount === 0) {
+    return false
+  }
+  return project.value.collectedAmount >= project.value.targetAmount
+})
+
 function nextImage() {
   if (images.value.length > 1) {
     currentImageIndex.value = (currentImageIndex.value + 1) % images.value.length
@@ -317,6 +327,9 @@ async function loadDonations(projectId) {
 }
 
 function handleDonate() {
+  if (isProjectFullyFunded.value) {
+    return
+  }
   router.push(`/projects/${project.value.id}/donate`)
 }
 
@@ -688,6 +701,22 @@ onMounted(async () => {
 
 .login-link:hover {
   text-decoration: underline;
+}
+
+.fully-funded-message {
+  padding: 30px;
+  background-color: #d4edda;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.fully-funded-message p {
+  margin: 15px 0;
+  color: #155724;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .admin-actions {
