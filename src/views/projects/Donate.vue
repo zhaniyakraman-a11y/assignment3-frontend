@@ -28,6 +28,16 @@
         </div>
       </div>
 
+      <div v-else-if="isProjectFullyFunded" class="fully-funded-container">
+        <div class="fully-funded-message">
+          <div class="fully-funded-icon">🎉</div>
+          <h2>Проект полностью профинансирован!</h2>
+          <p>Этот проект уже достиг своей цели. Спасибо всем донорам за поддержку!</p>
+          <button @click="goToProject" class="view-project-button">Посмотреть проект</button>
+          <button @click="goBack" class="back-button">Вернуться назад</button>
+        </div>
+      </div>
+
       <div v-else class="donate-content">
         <div class="project-summary" v-if="project">
           <h2>{{ project.title }}</h2>
@@ -198,6 +208,13 @@ const progressPercentage = computed(() => {
   return Math.min(Math.round(percentage), 100)
 })
 
+const isProjectFullyFunded = computed(() => {
+  if (!project.value?.targetAmount || project.value.targetAmount === 0) {
+    return false
+  }
+  return project.value.collectedAmount >= project.value.targetAmount
+})
+
 function formatKZT(value) {
   const num = Number(value) || 0
   return `${num.toLocaleString('ru-RU')} KZT`
@@ -242,6 +259,11 @@ async function loadProject() {
 }
 
 async function handleSubmit() {
+  if (isProjectFullyFunded.value) {
+    error.value = 'Проект уже полностью профинансирован'
+    return
+  }
+
   if (!amount.value || amount.value <= 0) {
     error.value = 'Введите сумму пожертвования'
     return
@@ -317,14 +339,16 @@ onMounted(() => {
   color: #d32f2f;
 }
 
-.success-container {
+.success-container,
+.fully-funded-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 400px;
 }
 
-.success-message {
+.success-message,
+.fully-funded-message {
   text-align: center;
   background-color: white;
   padding: 60px 40px;
@@ -333,7 +357,8 @@ onMounted(() => {
   max-width: 500px;
 }
 
-.success-icon {
+.success-icon,
+.fully-funded-icon {
   width: 80px;
   height: 80px;
   background-color: #4caf50;
@@ -344,6 +369,21 @@ onMounted(() => {
   justify-content: center;
   font-size: 48px;
   margin: 0 auto 20px;
+}
+
+.fully-funded-icon {
+  background-color: #ffc107;
+  font-size: 48px;
+}
+
+.fully-funded-message h2 {
+  color: #222;
+  margin: 0 0 10px 0;
+}
+
+.fully-funded-message p {
+  color: #666;
+  margin: 0 0 20px 0;
 }
 
 .success-message h2 {
