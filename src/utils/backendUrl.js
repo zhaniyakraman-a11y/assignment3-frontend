@@ -34,12 +34,25 @@ export function getFileUrl(path) {
   
   const backendUrl = getBackendUrl()
   
+  // Убираем /app из начала пути, если он там есть (для Render.com)
+  let cleanPath = path
+  if (cleanPath.startsWith('/app/')) {
+    cleanPath = cleanPath.substring(5) // Убираем '/app/'
+  } else if (cleanPath.startsWith('app/')) {
+    cleanPath = cleanPath.substring(4) // Убираем 'app/'
+  }
+  
   // Если путь начинается с /, просто добавляем к базовому URL
-  if (path.startsWith('/')) {
-    return `${backendUrl}${path}`
+  if (cleanPath.startsWith('/')) {
+    return `${backendUrl}${cleanPath}`
+  }
+  
+  // Если путь уже содержит images/, docs/, avatars/ - добавляем / в начало
+  if (cleanPath.startsWith('images/') || cleanPath.startsWith('docs/') || cleanPath.startsWith('avatars/')) {
+    return `${backendUrl}/${cleanPath}`
   }
   
   // Иначе добавляем /
-  return `${backendUrl}/${path}`
+  return `${backendUrl}/${cleanPath}`
 }
 
