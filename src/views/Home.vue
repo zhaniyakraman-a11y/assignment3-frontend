@@ -16,7 +16,7 @@
                 <p>Ежемесячно пожертвовано</p>
             </div>
             <div class="stat-item">
-                <h3>{{ formatStatAmount(stats.lastYearSum) }}</h3>
+                <h3>372М</h3>
                 <p>Благотворительность в прошлом году</p>
             </div>
         </section>
