@@ -635,4 +635,159 @@ h2 {
     border-radius: 5px;
 }
 
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 60px 20px;
+    }
+
+    .hero-banner h1 {
+        font-size: 32px;
+    }
+
+    .hero-banner p {
+        font-size: 16px;
+    }
+
+    .stats-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .stat-item h3 {
+        font-size: 28px;
+    }
+
+    .how-it-works-steps {
+        padding: 40px 20px;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .step-item {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 30px;
+    }
+
+    .step-item:last-child {
+        border-bottom: none;
+    }
+
+    .step-item span {
+        font-size: 36px;
+    }
+
+    .step-item h3 {
+        font-size: 20px;
+    }
+
+    .projects-section {
+        padding: 40px 20px;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .about-donate-section {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .left-content h2 {
+        font-size: 26px;
+    }
+
+    .left-content h3 {
+        font-size: 20px;
+    }
+
+    .right-donate-cta {
+        padding: 30px 20px;
+    }
+
+    .cta-content h3 {
+        font-size: 24px;
+    }
+
+    .cta-content p {
+        font-size: 14px;
+    }
+
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+
+    .join-us-section {
+        padding: 40px 20px;
+    }
+
+    .join-us-cards {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .join-card {
+        max-width: 100%;
+    }
+
+    .categories-section {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-section {
+        padding: 40px 20px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner h1 {
+        font-size: 24px;
+    }
+
+    .stat-item h3 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .left-content h2 {
+        font-size: 22px;
+    }
+
+    .cta-content h3 {
+        font-size: 20px;
+    }
+
+    .photo-grid img {
+        height: 250px;
+    }
+}
+
 </style>

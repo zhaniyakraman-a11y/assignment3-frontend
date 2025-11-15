@@ -847,12 +847,59 @@ onMounted(async () => {
 }
 
 @media (max-width: 768px) {
+  .project-detail {
+    padding: 20px;
+  }
+
   .project-content {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .project-header h1 {
-    font-size: 32px;
+    font-size: 28px;
+  }
+
+  .project-category {
+    font-size: 16px;
+  }
+
+  .image-carousel {
+    aspect-ratio: 16/9;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .carousel-btn-left {
+    left: 10px;
+  }
+
+  .carousel-btn-right {
+    right: 10px;
+  }
+
+  .project-description h2,
+  .project-author h3,
+  .project-progress h3 {
+    font-size: 20px;
+  }
+
+  .project-description p {
+    font-size: 15px;
+  }
+
+  .author-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .author-avatar {
+    width: 80px;
+    height: 80px;
   }
 
   .admin-actions {
@@ -862,6 +909,56 @@ onMounted(async () => {
   .edit-button,
   .delete-button {
     width: 100%;
+  }
+
+  .donations-history {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .donations-history h3 {
+    font-size: 20px;
+  }
+
+  .donation-item {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .donation-amount {
+    width: 100%;
+    text-align: left;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-header h1 {
+    font-size: 24px;
+  }
+
+  .project-description h2,
+  .project-author h3,
+  .project-progress h3 {
+    font-size: 18px;
+  }
+
+  .carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .stat-label,
+  .stat-value {
+    font-size: 14px;
+  }
+
+  .donate-button {
+    font-size: 16px;
+    padding: 12px 20px;
   }
 }
 </style>

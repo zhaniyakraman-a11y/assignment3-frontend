@@ -194,5 +194,34 @@ async function handleRegister() {
 .auth-link a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .auth-section {
+    padding: 40px 20px;
+  }
+
+  .auth-container {
+    padding: 30px 20px;
+  }
+
+  .auth-container h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container h2 {
+    font-size: 22px;
+  }
+
+  .form-input {
+    font-size: 16px;
+  }
+
+  .auth-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
 </style>
 

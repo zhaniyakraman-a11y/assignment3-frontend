@@ -307,5 +307,46 @@ const progressPercentage = computed(() => {
   font-weight: bold;
   color: #ff6600;
 }
+
+@media (max-width: 768px) {
+  .project-card {
+    padding: 15px;
+  }
+
+  .project-title {
+    font-size: 18px;
+  }
+
+  .project-description {
+    font-size: 13px;
+  }
+
+  .category-tag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .progress-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-title {
+    font-size: 16px;
+  }
+
+  .project-description {
+    font-size: 12px;
+  }
+
+  .no-image {
+    height: 150px;
+  }
+
+  .no-image p {
+    font-size: 12px;
+  }
+}
 </style>
 

@@ -305,5 +305,66 @@ onMounted(() => {
 .edit-button:hover {
   background-color: #e55a00;
 }
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-info h2 {
+    font-size: 24px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .info-label {
+    min-width: auto;
+    font-size: 14px;
+  }
+
+  .info-value {
+    font-size: 14px;
+  }
+
+  .documents-title {
+    font-size: 20px;
+  }
+
+  .document-item {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .document-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-info h2 {
+    font-size: 20px;
+  }
+
+  .documents-title {
+    font-size: 18px;
+  }
+}
 </style>
 

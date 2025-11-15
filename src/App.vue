@@ -11,6 +11,7 @@ const router = useRouter()
 
 const isAuthenticated = computed(() => !!authStore.authData?.token)
 const showDropdown = ref(false)
+const showMobileMenu = ref(false)
 
 const currentUser = computed(() => userStore.currentUser)
 
@@ -47,26 +48,38 @@ function handleLogout() {
   authStore.logout()
   userStore.currentUser = null
   showDropdown.value = false
+  closeMobileMenu()
   router.push('/')
 }
 
 function goToProfile() {
   showDropdown.value = false
+  closeMobileMenu()
   router.push('/profile')
 }
 
 function goToVerification() {
   showDropdown.value = false
+  closeMobileMenu()
   router.push('/verification')
 }
 
 function goToCategories() {
   showDropdown.value = false
+  closeMobileMenu()
   router.push('/categories')
 }
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value
+}
+
+function toggleMobileMenu() {
+  showMobileMenu.value = !showMobileMenu.value
+}
+
+function closeMobileMenu() {
+  showMobileMenu.value = false
 }
 
 function closeDropdown(e) {
@@ -97,14 +110,19 @@ onUnmounted(() => {
       <div class="logo-container">
         <span class="logo-text">AZHAR DONATION FUND</span>
       </div>
-      <nav class="nav-links">
-        <router-link to="/">Главная</router-link>
-        <router-link to="/projects">Проекты</router-link>
-        <router-link to="/events">Волонтерство</router-link>
-        <router-link to="/about">О нас</router-link>
-        <router-link to="/contacts">Контакты</router-link>
-        <router-link v-if="!isAuthenticated" to="/register" class="nav-donate">Пожертвовать</router-link>
-        <router-link v-if="!isAuthenticated" to="/login">Войти</router-link>
+      <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="Меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" :class="{ 'mobile-open': showMobileMenu }">
+        <router-link to="/" @click="closeMobileMenu">Главная</router-link>
+        <router-link to="/projects" @click="closeMobileMenu">Проекты</router-link>
+        <router-link to="/events" @click="closeMobileMenu">Волонтерство</router-link>
+        <router-link to="/about" @click="closeMobileMenu">О нас</router-link>
+        <router-link to="/contacts" @click="closeMobileMenu">Контакты</router-link>
+        <router-link v-if="!isAuthenticated" to="/register" class="nav-donate" @click="closeMobileMenu">Пожертвовать</router-link>
+        <router-link v-if="!isAuthenticated" to="/login" @click="closeMobileMenu">Войти</router-link>
         <div v-if="isAuthenticated" class="user-menu" @click.stop="toggleDropdown">
           <div class="user-info">
             <img :src="avatarUrl" :alt="currentUser?.fullName || 'User'" class="user-avatar" />
@@ -118,6 +136,7 @@ onUnmounted(() => {
           </div>
         </div>
       </nav>
+      <div v-if="showMobileMenu" class="mobile-menu-overlay" @click="closeMobileMenu"></div>
     </header>
 
     <main>
@@ -220,6 +239,29 @@ main {
   font-size: 14px;
 }
 
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.mobile-menu-overlay {
+  display: none;
+}
+
 .user-menu {
   position: relative;
   cursor: pointer;
@@ -280,5 +322,142 @@ main {
 .dropdown-item:last-child {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+    padding: 15px 20px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: #222;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px 20px;
+    gap: 0;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .nav-links.mobile-open {
+    right: 0;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid #444;
+    font-size: 16px;
+  }
+
+  .nav-links .nav-donate {
+    background-color: #ff6600;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .user-menu {
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .user-name {
+    font-size: 16px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: none;
+    border: none;
+    background-color: #333;
+  }
+
+  .dropdown-item {
+    color: white !important;
+    background-color: #333;
+    padding: 15px;
+  }
+
+  .dropdown-item:hover {
+    background-color: #444;
+  }
+
+  .mobile-menu-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 14px;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer a {
+    margin-right: 0;
+  }
 }
 </style>

@@ -597,5 +597,75 @@ onMounted(async () => {
     position: static;
   }
 }
+
+@media (max-width: 768px) {
+  .event-detail {
+    padding: 20px;
+  }
+
+  .event-header h1 {
+    font-size: 28px;
+  }
+
+  .event-description h2 {
+    font-size: 20px;
+  }
+
+  .event-description p {
+    font-size: 15px;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .detail-label {
+    font-size: 14px;
+  }
+
+  .detail-value {
+    font-size: 16px;
+  }
+
+  .organizer-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .organizer-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .participants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-header h1 {
+    font-size: 24px;
+  }
+
+  .event-description h2 {
+    font-size: 18px;
+  }
+
+  .participate-button {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}
 </style>
 
