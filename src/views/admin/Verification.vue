@@ -175,6 +175,7 @@ import { ref, computed, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProjectStore } from '../../stores/useProjectStore'
 import { useUserStore } from '../../stores/useUserStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const router = useRouter()
 const projectStore = useProjectStore()
@@ -230,24 +231,12 @@ function getUserAvatarUrl(user) {
   if (!user?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (user.avatarPath.startsWith('http')) {
-    return user.avatarPath
-  }
-  if (user.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${user.avatarPath}`
-  }
-  return `http://localhost:8080/${user.avatarPath}`
+  return getFileUrl(user.avatarPath)
 }
 
 function getDocumentUrl(user) {
   if (!user?.docPath) return ''
-  if (user.docPath.startsWith('http')) {
-    return user.docPath
-  }
-  if (user.docPath.startsWith('/')) {
-    return `http://localhost:8080${user.docPath}`
-  }
-  return `http://localhost:8080/${user.docPath}`
+  return getFileUrl(user.docPath)
 }
 
 async function loadData() {

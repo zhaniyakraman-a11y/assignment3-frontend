@@ -155,6 +155,7 @@ import { useProjectStore } from '../../stores/useProjectStore'
 import { useUserStore } from '../../stores/useUserStore'
 import { useDonationStore } from '../../stores/useDonationStore'
 import { useAuthStore } from '../../stores/useAuthStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const route = useRoute()
 const router = useRouter()
@@ -202,15 +203,7 @@ const images = computed(() => {
   if (!project.value?.imagePaths || project.value.imagePaths.length === 0) {
     return []
   }
-  return project.value.imagePaths.map(imagePath => {
-    if (imagePath.startsWith('http')) {
-      return imagePath
-    }
-    if (imagePath.startsWith('/')) {
-      return `http://localhost:8080${imagePath}`
-    }
-    return `http://localhost:8080/${imagePath}`
-  })
+  return project.value.imagePaths.map(imagePath => getFileUrl(imagePath))
 })
 
 const currentImage = computed(() => {
@@ -222,13 +215,7 @@ const authorAvatarUrl = computed(() => {
   if (!project.value?.author?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (project.value.author.avatarPath.startsWith('http')) {
-    return project.value.author.avatarPath
-  }
-  if (project.value.author.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${project.value.author.avatarPath}`
-  }
-  return `http://localhost:8080/${project.value.author.avatarPath}`
+  return getFileUrl(project.value.author.avatarPath)
 })
 
 const progressPercentage = computed(() => {
@@ -285,13 +272,7 @@ function getDonorAvatarUrl(donor) {
   if (!donor?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (donor.avatarPath.startsWith('http')) {
-    return donor.avatarPath
-  }
-  if (donor.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${donor.avatarPath}`
-  }
-  return `http://localhost:8080/${donor.avatarPath}`
+  return getFileUrl(donor.avatarPath)
 }
 
 async function loadProject() {

@@ -1,0 +1,6 @@
+# Скопируйте и вставьте в Netlify -> Site settings -> Environment variables
+# Замените your-backend-url.onrender.com на URL вашего бэкенда
+
+VITE_API_BASE_URL=https://assignment-3-momx.onrender.com/api/v1
+VITE_BACKEND_URL=https://assignment-3-momx.onrender.com
+

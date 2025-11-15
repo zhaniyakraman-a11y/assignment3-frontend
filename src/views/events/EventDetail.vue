@@ -112,6 +112,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useEventStore } from '../../stores/useEventStore'
 import { useUserStore } from '../../stores/useUserStore'
 import { useAuthStore } from '../../stores/useAuthStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const route = useRoute()
 const router = useRouter()
@@ -151,10 +152,7 @@ const organizerAvatarUrl = computed(() => {
   if (!event.value?.organizer?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (event.value.organizer.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${event.value.organizer.avatarPath}`
-  }
-  return `http://localhost:8080/${event.value.organizer.avatarPath}`
+  return getFileUrl(event.value.organizer.avatarPath)
 })
 
 function formatDateTime(dateString) {
@@ -173,10 +171,7 @@ function getParticipantAvatarUrl(participant) {
   if (!participant?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (participant.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${participant.avatarPath}`
-  }
-  return `http://localhost:8080/${participant.avatarPath}`
+  return getFileUrl(participant.avatarPath)
 }
 
 function goToOrganizerProfile() {

@@ -58,6 +58,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '../../stores/useUserStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const route = useRoute()
 const router = useRouter()
@@ -71,21 +72,12 @@ const avatarUrl = computed(() => {
   if (!user.value?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (user.value.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${user.value.avatarPath}`
-  }
-  return `http://localhost:8080/${user.value.avatarPath}`
+  return getFileUrl(user.value.avatarPath)
 })
 
 const documentUrl = computed(() => {
   if (!user.value?.docPath) return ''
-  if (user.value.docPath.startsWith('http')) {
-    return user.value.docPath
-  }
-  if (user.value.docPath.startsWith('/')) {
-    return `http://localhost:8080${user.value.docPath}`
-  }
-  return `http://localhost:8080/${user.value.docPath}`
+  return getFileUrl(user.value.docPath)
 })
 
 const roleDisplay = computed(() => {

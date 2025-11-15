@@ -165,6 +165,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useProjectStore } from '../../stores/useProjectStore'
 import { useCategoryStore } from '../../stores/useCategoryStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const router = useRouter()
 const route = useRoute()
@@ -231,13 +232,7 @@ async function loadProject() {
 }
 
 function getImageUrl(imagePath) {
-  if (imagePath.startsWith('http')) {
-    return imagePath
-  }
-  if (imagePath.startsWith('/')) {
-    return `http://localhost:8080${imagePath}`
-  }
-  return `http://localhost:8080/${imagePath}`
+  return getFileUrl(imagePath)
 }
 
 function getImageName(imagePath) {

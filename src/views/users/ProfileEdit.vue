@@ -124,6 +124,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../../stores/useUserStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -151,13 +152,7 @@ const avatarPreview = ref(defaultAvatar)
 
 const documentUrl = computed(() => {
   if (!user.value?.docPath) return ''
-  if (user.value.docPath.startsWith('http')) {
-    return user.value.docPath
-  }
-  if (user.value.docPath.startsWith('/')) {
-    return `http://localhost:8080${user.value.docPath}`
-  }
-  return `http://localhost:8080/${user.value.docPath}`
+  return getFileUrl(user.value.docPath)
 })
 
 function initializeForm() {
@@ -172,13 +167,7 @@ function initializeForm() {
     }
 
     if (user.value.avatarPath) {
-      if (user.value.avatarPath.startsWith('http')) {
-        avatarPreview.value = user.value.avatarPath
-      } else if (user.value.avatarPath.startsWith('/')) {
-        avatarPreview.value = `http://localhost:8080${user.value.avatarPath}`
-      } else {
-        avatarPreview.value = `http://localhost:8080/${user.value.avatarPath}`
-      }
+      avatarPreview.value = getFileUrl(user.value.avatarPath)
     } else {
       avatarPreview.value = defaultAvatar
     }

@@ -186,6 +186,7 @@ import ProjectCard from '../components/ProjectCard.vue'
 import { useUserStore } from '../stores/useUserStore'
 import { useDonationStore } from '../stores/useDonationStore'
 import { useProjectStore } from '../stores/useProjectStore'
+import { getFileUrl } from '../utils/backendUrl'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -267,13 +268,7 @@ const formattedProjects = computed(() => {
     const images = []
     if (project.imagePaths && project.imagePaths.length > 0) {
       project.imagePaths.forEach(imagePath => {
-        if (imagePath.startsWith('http')) {
-          images.push(imagePath)
-        } else if (imagePath.startsWith('/')) {
-          images.push(`http://localhost:8080${imagePath}`)
-        } else {
-          images.push(`http://localhost:8080/${imagePath}`)
-        }
+        images.push(getFileUrl(imagePath))
       })
     }
     

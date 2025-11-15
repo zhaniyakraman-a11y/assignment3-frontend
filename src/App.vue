@@ -3,6 +3,7 @@ import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { useAuthStore } from './stores/useAuthStore'
 import { useUserStore } from './stores/useUserStore'
 import { useRouter } from 'vue-router'
+import { getFileUrl } from './utils/backendUrl'
 
 const authStore = useAuthStore()
 const userStore = useUserStore()
@@ -21,10 +22,7 @@ const avatarUrl = computed(() => {
   if (!currentUser.value?.avatarPath) {
     return 'https://as2.ftcdn.net/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   }
-  if (currentUser.value.avatarPath.startsWith('/')) {
-    return `http://localhost:8080${currentUser.value.avatarPath}`
-  }
-  return `http://localhost:8080/${currentUser.value.avatarPath}`
+  return getFileUrl(currentUser.value.avatarPath)
 })
 
 async function loadCurrentUser() {
