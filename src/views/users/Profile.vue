@@ -307,23 +307,40 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .profile-page {
-    padding: 20px;
+  .profile-header {
+    padding: 40px 20px;
   }
 
-  .profile-header {
+  .profile-header h1 {
+    font-size: 28px;
+  }
+
+  .profile-section {
+    padding: 30px 20px;
+  }
+
+  .profile-content {
+    padding: 25px;
+  }
+
+  .profile-card {
     flex-direction: column;
     text-align: center;
     gap: 20px;
   }
 
   .profile-avatar {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-info {
+    text-align: left;
   }
 
   .profile-info h2 {
     font-size: 24px;
+    text-align: center;
   }
 
   .info-row {
@@ -355,11 +372,24 @@ onMounted(() => {
     width: 100%;
     text-align: center;
   }
+
+  .edit-button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
+  .profile-header h1 {
+    font-size: 24px;
+  }
+
   .profile-info h2 {
     font-size: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
   }
 
   .documents-title {

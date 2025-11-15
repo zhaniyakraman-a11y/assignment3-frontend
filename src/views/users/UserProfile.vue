@@ -303,5 +303,96 @@ onMounted(() => {
 .back-button:hover {
   background-color: #5a6268;
 }
+
+@media (max-width: 768px) {
+  .user-profile-page {
+    padding: 0;
+  }
+
+  .profile-header {
+    padding: 40px 20px;
+  }
+
+  .profile-header h1 {
+    font-size: 28px;
+  }
+
+  .profile-section {
+    padding: 30px 20px;
+  }
+
+  .profile-content {
+    padding: 25px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-info {
+    text-align: left;
+  }
+
+  .profile-info h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .info-label {
+    min-width: auto;
+    font-size: 14px;
+  }
+
+  .info-value {
+    font-size: 14px;
+  }
+
+  .documents-title {
+    font-size: 20px;
+  }
+
+  .document-item {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .document-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header h1 {
+    font-size: 24px;
+  }
+
+  .profile-info h2 {
+    font-size: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .documents-title {
+    font-size: 18px;
+  }
+}
 </style>
 
