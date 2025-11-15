@@ -150,8 +150,8 @@ onUnmounted(() => {
         </div>
         <div class="footer-links">
           <a href="#">Навигация</a>
-          <a href="#">Помощь</a>
-          <a href="#">Следите за нами</a>
+          <router-link to="/about">Помощь</router-link>
+          <router-link to="/about">Следите за нами</router-link>
         </div>
       </div>
       <p style="text-align: center; margin-top: 20px;">&copy; 2025 AZHAR DONATION FUND. Все права защищены.</p>
