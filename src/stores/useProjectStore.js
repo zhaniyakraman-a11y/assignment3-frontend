@@ -25,6 +25,24 @@ export const useProjectStore = defineStore('project', () => {
     }
   }
 
+  async function getAllProjectsForAdmin() {
+    try {
+      if (!token.value) {
+        throw new Error('Требуется авторизация')
+      }
+      const response = await api.get('/projects/admin/all', {
+        headers: {
+          Authorization: `Bearer ${token.value}`
+        }
+      })
+      projects.value = response.data
+      return response.data
+    } catch (err) {
+      console.error('Ошибка при получении всех проектов для администратора:', err)
+      throw new Error('Не удалось загрузить проекты')
+    }
+  }
+
   async function getProjectById(id) {
     try {
       const headers = {}
@@ -211,6 +229,7 @@ export const useProjectStore = defineStore('project', () => {
     projects,
     currentProject,
     getAllProjects,
+    getAllProjectsForAdmin,
     getProjectById,
     createProject,
     updateProject,

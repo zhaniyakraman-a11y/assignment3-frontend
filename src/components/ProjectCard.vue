@@ -28,6 +28,9 @@
         ></span>
       </div>
     </div>
+    <div v-else class="no-image" @click.stop>
+      <p>Изображения отсутствуют</p>
+    </div>
     <div class="card-content">
       <p class="category-tag">{{ categoryDisplay }}</p>
       <h4 class="project-title">{{ project.title }}</h4>
@@ -73,17 +76,26 @@ function goToProject() {
 const currentImageIndex = ref(0)
 
 const images = computed(() => {
+  let imageList = []
+  
   if (props.project.images && Array.isArray(props.project.images) && props.project.images.length > 0) {
-    return props.project.images
+    imageList = props.project.images
+  } else if (props.project.image) {
+    imageList = [props.project.image]
   }
-  if (props.project.image) {
-    return [props.project.image]
-  }
-  return []
+  
+  // Фильтруем пустые строки, null, undefined и placeholder
+  return imageList.filter(img => {
+    return img && 
+           img !== '' && 
+           img !== '/placeholder.jpg' && 
+           img !== 'placeholder.jpg' &&
+           typeof img === 'string'
+  })
 })
 
 const currentImage = computed(() => {
-  if (images.value.length === 0) return '/placeholder.jpg'
+  if (images.value.length === 0) return ''
   return images.value[currentImageIndex.value]
 })
 
@@ -211,6 +223,21 @@ const progressPercentage = computed(() => {
 
 .indicator:hover {
   background-color: rgba(255, 255, 255, 0.8);
+}
+
+.no-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  color: #666;
+}
+
+.no-image p {
+  margin: 0;
+  font-size: 14px;
 }
 
 .card-content {

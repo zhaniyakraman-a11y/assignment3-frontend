@@ -79,6 +79,14 @@
                     <span class="info-label">Автор:</span>
                     <span class="info-value">{{ project.author?.fullName || 'Не указан' }}</span>
                   </div>
+                  <div class="info-item">
+                    <span class="info-label">Категория:</span>
+                    <span class="info-value">{{ project.category?.name || 'Без категории' }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">Цель:</span>
+                    <span class="info-value">{{ formatKZT(project.targetAmount) }}</span>
+                  </div>
                 </div>
                 <div class="card-actions">
                   <button @click="viewProject(project.id)" class="view-button">Просмотреть</button>
@@ -247,7 +255,7 @@ async function loadData() {
   error.value = ''
   try {
     await Promise.all([
-      projectStore.getAllProjects(),
+      projectStore.getAllProjectsForAdmin(), // Используем метод для администраторов, чтобы получить все проекты
       userStore.getAllUsers()
     ])
   } catch (err) {
