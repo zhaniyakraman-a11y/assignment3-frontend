@@ -47,6 +47,7 @@ import { useRouter } from 'vue-router'
 import { useProjectStore } from '../../stores/useProjectStore'
 import { useUserStore } from '../../stores/useUserStore'
 import ProjectCard from '../../components/ProjectCard.vue'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const router = useRouter()
 const projectStore = useProjectStore()

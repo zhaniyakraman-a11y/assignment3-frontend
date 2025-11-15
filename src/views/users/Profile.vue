@@ -61,6 +61,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../../stores/useUserStore'
+import { getFileUrl } from '../../utils/backendUrl'
 
 const router = useRouter()
 const userStore = useUserStore()
