@@ -37,12 +37,13 @@
           v-for="category in categories"
           :key="category.id"
           class="category-card"
+          @click="goToCategoryDetail(category.id)"
         >
           <div class="card-content">
             <h3 class="category-name">{{ category.name }}</h3>
             <p class="category-description">{{ category.description }}</p>
           </div>
-          <div v-if="isAdmin" class="card-actions">
+          <div v-if="isAdmin" class="card-actions" @click.stop>
             <button
               @click="editCategory(category.id)"
               class="edit-button"
@@ -92,6 +93,10 @@ async function loadCategories() {
 
 function goToCreateCategory() {
   router.push('/categories/create')
+}
+
+function goToCategoryDetail(id) {
+  router.push(`/categories/${id}`)
 }
 
 function editCategory(id) {
@@ -194,6 +199,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .category-card:hover {

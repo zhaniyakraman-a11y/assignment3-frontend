@@ -11,6 +11,7 @@ import Verification from '../views/admin/Verification.vue'
 import ProjectCreate from '../views/projects/ProjectCreate.vue'
 import ProjectEdit from '../views/projects/ProjectEdit.vue'
 import Categories from '../views/categories/Categories.vue'
+import CategoryDetail from '../views/categories/CategoryDetail.vue'
 import CategoryCreate from '../views/categories/CategoryCreate.vue'
 import CategoryEdit from '../views/categories/CategoryEdit.vue'
 import Profile from '../views/users/Profile.vue'
@@ -113,6 +114,12 @@ const router = createRouter({
       path: '/categories',
       name: 'Categories',
       component: Categories,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: '/categories/:id',
+      name: 'CategoryDetail',
+      component: CategoryDetail,
       meta: { requiresAuth: false },
     },
     {
