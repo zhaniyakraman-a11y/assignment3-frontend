@@ -67,6 +67,9 @@
             >
               Отменить участие
             </button>
+            <div v-if="!isAuthenticated && !isOrganizer" class="auth-message">
+              <p>Чтобы принять участие в событии, пожалуйста, <router-link to="/login" class="login-link">войдите</router-link> в систему</p>
+            </div>
             <div v-if="canEditOrDelete" class="admin-actions">
               <button v-if="canEdit" @click="handleEdit" class="edit-button">Изменить событие</button>
               <button v-if="canDelete" @click="handleDelete" class="delete-button">Удалить событие</button>
@@ -482,6 +485,31 @@ onMounted(async () => {
 
 .delete-button:hover {
   background-color: #da190b;
+}
+
+.auth-message {
+  padding: 20px;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.auth-message p {
+  margin: 0;
+  color: #856404;
+  font-size: 16px;
+}
+
+.login-link {
+  color: #ff6600;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }
 
 .event-participants-section {
