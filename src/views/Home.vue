@@ -156,22 +156,22 @@
         <section class="gallery-section">
             <h2>ФОТОГАЛЕРЕЯ</h2>
             <div class="photo-grid">
-                <img src="https://cdn.nur.kz/images/1200x675/a8b0fff23f08c639.jpeg?version=1"
+                <img src="/b.png"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Волонтеры собирают помощь" />
-                <img src="https://img.freepik.com/premium-photo/donation-box-free-food-food-reserves_378481-7686.jpg"
+                <img src="/c.png"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Коробка с надписью Donation" />
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTisQN0ocVkmpC9nr81HZitrV6Rux9ICXKsXg&s"
+                <img src="/d.jpg"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Дети улыбаются после помощи" />
-                <img src="https://static-cdn.toi-media.com/www/uploads/2025/05/AFP__20250430__442C9NP__v1__HighRes__PalestinianIsraelConflict.jpg"
+                <img src="/g.png"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Раздача продовольственной помощи" />
-                <img src="https://www.shutterstock.com/image-photo/poor-people-get-welfare-assistance-600nw-2478831077.jpg"
+                <img src="/e.jpg"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Люди получают благотворительную помощь" />
-                <img src="https://media.istockphoto.com/id/1625310710/photo/happy-group-of-volunteer-people-stacking-hands-celebrating-together-outdoor-teamwork-and.jpg?s=612x612&w=0&k=20&c=KrkTdMYjObaAhhwzsTnHf8dIDpdmc5pvAujfCl6riXU="
+                <img src="/b.png"
                     style="width:400px; height:400px; object-fit:cover; border-radius:20px;"
                     alt="Улыбающиеся люди после волонтёрских мероприятий" />
             </div>
