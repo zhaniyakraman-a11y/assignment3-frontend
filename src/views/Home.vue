@@ -321,7 +321,7 @@ h2 {
     color: white;
     text-align: center;
     padding: 100px 5%;
-    background-image: url('bann.png');
+    background-image: url('fon.jpg');
     background-size: cover;
 }
 
